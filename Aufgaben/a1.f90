@@ -1,4 +1,4 @@
 program test
 	implicit none 
-	write(*,*) "hello world"
+	write(*,*) "Hello world"
 end program test
