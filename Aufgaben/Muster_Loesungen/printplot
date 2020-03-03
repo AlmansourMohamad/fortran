@@ -1,0 +1,25 @@
+  subroutine print_plot(mat)
+
+! Das Programm rechnet die Werte von mat
+! in kleine Buchstaben um
+! (a-niedrigste Werte, z-hoechste Werte).
+! Die Buchstabenmatrix wird ausgedruckt.
+
+    real,intent(in),dimension(:,:)  :: mat
+    character(len=1),dimension(size(mat,1),size(mat,2)) :: plo
+    real             :: mi,ma,near26
+    integer          :: i
+
+    mi = minval(mat)
+    ma = maxval(mat)
+    near26 = 26.0-3*spacing(26.0)
+
+! Im ASCII-Code beginnen die Kleinbuchstaben an Position 97
+ 
+    plo = char( int( 97+((mat-mi)/(ma-mi))*near26 ) )
+
+    do i = 1, size(mat,1)
+      write(unit=*,fmt=*) plo(i,:)
+    end do
+
+  end subroutine print_plot
