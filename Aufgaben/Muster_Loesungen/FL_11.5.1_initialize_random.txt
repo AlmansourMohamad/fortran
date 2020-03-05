@@ -1,0 +1,33 @@
+!---> Program 1
+!---> create a defined start-state of random number generator and 
+!---> write it into file "szd"
+
+      integer, dimension(:), allocatable :: zufall
+
+      call random_seed(size=n)
+      allocate(zufall(n))
+
+      call random_seed(get=zufall)
+
+      open(unit=9, file='szd', access='sequential', status='new',  &
+           action='write', form='unformatted')
+
+      write(unit=9) zufall
+
+      deallocate(zufall)
+
+!---> Program 2
+!---> initialize randomgenerator
+
+      call random_seed(size=n)
+      allocate(zufall(n))
+
+      read(unit=8) zufall
+
+      call random_seed(put=zufall)
+      call random_number(zufallszahl)
+     ....
+
+      !---> save state of randomgenerator for recall
+      call random_seed(get=zufall)
+     ....
